@@ -11,22 +11,27 @@ import org.junit.Assert.*
 
 class CalculatorBrainUnitTest {
 
-    private val calculatorBrainModel = CalculatorBrain()
+    private var calculatorBrainModel : CalculatorBrain? = null
 
     @Before
     fun setupBeforeEachTest(){
 
+        calculatorBrainModel = CalculatorBrain()
     }
 
     @After
     fun tearDownAfterEachTest() {
-
+        calculatorBrainModel =  null
     }
 
     @Test
     fun recognizeOperations() {
 
-        assertEquals(CalculatorBrain.Operations.ADD, calculatorBrainModel.getOperation("+"))
+        val add = calculatorBrainModel?.getOperation("+")
+        val subtract = calculatorBrainModel?.getOperation("-")
+
+        assertEquals(CalculatorBrain.Operations.ADD, add)
+        assertEquals(CalculatorBrain.Operations.SUBTRACT, subtract)
 
     }
 
