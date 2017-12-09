@@ -18,6 +18,7 @@ class CalculatorBrainUnitTest {
     fun setupBeforeEachTest(){
 
         calculatorBrainModel = CalculatorBrain()
+
     }
 
     @After
@@ -30,10 +31,17 @@ class CalculatorBrainUnitTest {
 
         val add = calculatorBrainModel?.getOperation("+")
         val subtract = calculatorBrainModel?.getOperation("-")
+        val invalid = calculatorBrainModel?.getOperation("|")
 
         assertEquals(CalculatorBrain.Operations.ADD, add)
         assertEquals(CalculatorBrain.Operations.SUBTRACT, subtract)
+        assertEquals(CalculatorBrain.Operations.INVALID, invalid)
 
+    }
+
+    @Test
+    fun performOperations() {
+        //assertEquals(10, )
     }
 
 }
