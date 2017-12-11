@@ -27,11 +27,13 @@ class CalculatorBrainUnitTest {
         val subtract = calculator.get("-")
         val multiply = calculator.get("x")
         val invalid = calculator.get("|")
+        val sqroot = calculator.get("√")
 
         assertEquals(CalculatorBrain.Operations.ADD, add)
         assertEquals(CalculatorBrain.Operations.SUBTRACT, subtract)
         assertEquals(CalculatorBrain.Operations.MULTIPLY, multiply)
         assertEquals(CalculatorBrain.Operations.INVALID, invalid)
+        assertEquals(CalculatorBrain.Operations.SQROOT, sqroot)
 
     }
 
@@ -46,6 +48,9 @@ class CalculatorBrainUnitTest {
 
         calculator.perform("-",3.0,2.0)
         assertEquals(1.0, calculator.result, 0.0)
+
+        calculator.perform("√",4.0)
+        assertEquals(2.0,calculator.result,0.0)
 
     }
 

@@ -1,5 +1,7 @@
 package com.apps.bilaleluneis.kotlincalculator.model
 
+import java.lang.Math.*
+
 /**
  * @author Bilal El Uneis
  * @since 12/07/2017
@@ -24,6 +26,7 @@ class CalculatorBrain {
         ADD("+", { x, y -> (x ?: 0.0) + (y ?: 0.0) }),
         SUBTRACT("-", { x, y -> (x ?: 0.0) - (y ?: 0.0) }),
         MULTIPLY("x", { x, y -> (x ?: 0.0) * (y ?: 0.0) }),
+        SQROOT("√", {x,_ -> sqrt(x ?: 0.0)})
 
     }
 
