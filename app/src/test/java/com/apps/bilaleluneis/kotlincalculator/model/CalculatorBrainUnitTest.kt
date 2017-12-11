@@ -12,36 +12,41 @@ import org.junit.Assert.*
 
 class CalculatorBrainUnitTest {
 
-    private var calculatorBrainModel : CalculatorBrain? = null
+    private var calculator = CalculatorBrain()
 
     @Before
-    fun setupBeforeEachTest(){
-
-        calculatorBrainModel = CalculatorBrain()
-
-    }
+    fun setupBeforeEachTest(){ calculator.set(operand = 0.0) }
 
     @After
-    fun tearDownAfterEachTest() {
-        calculatorBrainModel =  null
-    }
+    fun tearDownAfterEachTest() { }
 
     @Test
     fun recognizeOperations() {
 
-        val add = calculatorBrainModel?.getOperation("+")
-        val subtract = calculatorBrainModel?.getOperation("-")
-        val invalid = calculatorBrainModel?.getOperation("|")
+        val add = calculator.get("+")
+        val subtract = calculator.get("-")
+        val multiply = calculator.get("x")
+        val invalid = calculator.get("|")
 
         assertEquals(CalculatorBrain.Operations.ADD, add)
         assertEquals(CalculatorBrain.Operations.SUBTRACT, subtract)
+        assertEquals(CalculatorBrain.Operations.MULTIPLY, multiply)
         assertEquals(CalculatorBrain.Operations.INVALID, invalid)
 
     }
 
     @Test
     fun performOperations() {
-        //assertEquals(10, )
+
+        calculator.perform("+",2.0,3.0)
+        assertEquals(5.0, calculator.result, 0.0)
+
+        calculator.perform("x",2.0,3.0)
+        assertEquals(6.0, calculator.result, 0.0)
+
+        calculator.perform("-",3.0,2.0)
+        assertEquals(1.0, calculator.result, 0.0)
+
     }
 
 }
