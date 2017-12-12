@@ -54,4 +54,13 @@ class CalculatorBrainUnitTest {
 
     }
 
+    @Test
+    fun equal() {
+
+        calculator.perform("+",2.0,3.0)
+        calculator.perform("=", calculator.result)
+        assertEquals(5.0,calculator.result,0.0)
+
+    }
+
 }

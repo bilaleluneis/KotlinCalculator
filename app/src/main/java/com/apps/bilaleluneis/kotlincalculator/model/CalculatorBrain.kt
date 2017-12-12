@@ -26,7 +26,8 @@ class CalculatorBrain {
         ADD("+", { x, y -> (x ?: 0.0) + (y ?: 0.0) }),
         SUBTRACT("-", { x, y -> (x ?: 0.0) - (y ?: 0.0) }),
         MULTIPLY("x", { x, y -> (x ?: 0.0) * (y ?: 0.0) }),
-        SQROOT("√", {x,_ -> sqrt(x ?: 0.0)})
+        SQROOT("√", {x,_ -> sqrt(x ?: 0.0)}),
+        EQUAL("=",{ result , _ -> result!! })
 
     }
 
