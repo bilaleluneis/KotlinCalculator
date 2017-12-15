@@ -22,11 +22,18 @@ class CalculatorPadActivity : Activity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calculator_pad)
-        calculatorButtons.forEach { it.setOnClickListener { onDigitClicked(it as Button) } }
+
+        calculatorButtons
+                .filter { it -> Regex("[0-9]").matches(input= it.text) }
+                .map { it.setOnClickListener{onDigitClicked(it as Button)} }
+
+        calculatorButtons
+                .filter { it -> !Regex("[0-9]").matches(input= it.text) }
+                .map { it.setOnClickListener{onOperationClicked(it as Button)} }
 
     }
 
-    private fun initCalculatorButtons() : Array<Button>{
+    private fun initCalculatorButtons() : Array<Button> {
 
         Log.d(loggerTag, "InitCalculatorButtons()")
         val layout = findViewById<ConstraintLayout>(R.id.constrain_layout)
@@ -40,9 +47,15 @@ class CalculatorPadActivity : Activity() {
 
     }
 
-    private fun onDigitClicked(button: Button){
+    private fun onDigitClicked(button: Button) {
 
-        Log.d(loggerTag,"button ${button.text} clicked !")
+        Log.d(loggerTag,"Digit ${button.text} clicked !")
+
+    }
+
+    private fun onOperationClicked(button: Button) {
+
+        Log.d(loggerTag,"Operation ${button.text} clicked !")
 
     }
 
