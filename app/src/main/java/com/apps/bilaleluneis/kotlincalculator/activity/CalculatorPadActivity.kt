@@ -3,8 +3,10 @@ package com.apps.bilaleluneis.kotlincalculator.activity
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import com.apps.bilaleluneis.kotlincalculator.R
 
 /**
@@ -44,16 +46,18 @@ class CalculatorPadActivity : Activity() {
 
         Log.d(loggerTag, "InitCalculatorButtons()")
 
-        val parentLayout = findViewById<LinearLayout>(R.id.linear_layout)
+        val parentLayout = findViewById<RelativeLayout>(R.id.parent_layout)
+        val rootLinearLayout = parentLayout.getChildAt(0) as ViewGroup
+
         var childLayoutList = emptyArray<LinearLayout>()
         var buttons : Array<Button> = emptyArray()
 
         //TODO: there has to be better way to go through children of parent layout and buttons
         // but I am still learning this stuff, so i am sure in time i will come back and
         //refactor this code
-       (0 until parentLayout.childCount)
-               .filter { index -> parentLayout.getChildAt(index) is LinearLayout }
-               .map {index -> childLayoutList += parentLayout.getChildAt(index) as LinearLayout}
+       (0 until rootLinearLayout.childCount)
+               .filter { index -> rootLinearLayout.getChildAt(index) is LinearLayout }
+               .map {index -> childLayoutList += rootLinearLayout.getChildAt(index) as LinearLayout}
 
         for(childLayout in childLayoutList) {
 
