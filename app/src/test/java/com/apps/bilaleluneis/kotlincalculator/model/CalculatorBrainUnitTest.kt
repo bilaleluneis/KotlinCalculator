@@ -12,10 +12,12 @@ import org.junit.Assert.*
 
 class CalculatorBrainUnitTest {
 
-    private var calculator = CalculatorBrain()
+    private lateinit var calculator: CalculatorBrain
 
     @Before
-    fun setupBeforeEachTest(){ calculator.set(operand = 0.0) }
+    fun setupBeforeEachTest(){
+        calculator = CalculatorBrain()
+    }
 
     @After
     fun tearDownAfterEachTest() { }
