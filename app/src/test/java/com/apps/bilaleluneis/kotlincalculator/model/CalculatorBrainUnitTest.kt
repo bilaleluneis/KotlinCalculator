@@ -56,12 +56,20 @@ class CalculatorBrainUnitTest {
 
     }
 
+    /**
+     * This unit test is the example a developer would use to understand
+     * how calculator object could be used.
+     */
     @Test
-    fun equal() {
+    fun calculator() {
 
         calculator.perform("+",2.0,3.0)
-        calculator.perform("=", calculator.result)
-        assertEquals(5.0,calculator.result,0.0)
+        calculator.perform("-", calculator.result, 3.0)
+        assertEquals(2.0, calculator.result,0.0)
+
+        calculator.perform("x", calculator.result, 2.0)
+        calculator.perform("√", calculator.result)
+        assertEquals(2.0, calculator.result,0.0)
 
     }
 

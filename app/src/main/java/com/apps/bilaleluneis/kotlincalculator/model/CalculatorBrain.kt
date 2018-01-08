@@ -26,8 +26,7 @@ class CalculatorBrain {
         ADD("+", { x, y -> (x ?: 0.0) + (y ?: 0.0) }),
         SUBTRACT("-", { x, y -> (x ?: 0.0) - (y ?: 0.0) }),
         MULTIPLY("x", { x, y -> (x ?: 0.0) * (y ?: 0.0) }),
-        SQROOT("√", {x,_ -> sqrt(x ?: 0.0)}),
-        EQUAL("=",{ result , _ -> result!! })
+        SQROOT("√", {x,_ -> sqrt(x ?: 0.0)})
 
     }
 
@@ -35,7 +34,8 @@ class CalculatorBrain {
 
     // setter is private , but getter is public
     var result: Double = 0.0
-        private set get() = accumulator
+        private set
+        get() = accumulator
 
 
     fun get(operator: String) : Operations {
@@ -47,9 +47,6 @@ class CalculatorBrain {
         }
 
     }
-
-    fun set(operand : Double) { accumulator = operand }
-
 
     fun perform(operator: String, operand1: Double = 0.0, operand2: Double = 0.0){
 

@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
 import com.apps.bilaleluneis.kotlincalculator.R
+import com.apps.bilaleluneis.kotlincalculator.model.CalculatorBrain
 
 /**
  * @author Bilal El Uneis
@@ -19,6 +21,11 @@ class CalculatorPadActivity : Activity() {
 
     private val loggerTag = "CalculatorPadActivity"
     private val calculatorButtons by lazy{ initCalculatorButtons() }
+    private val calculator = CalculatorBrain()
+    private lateinit var display: TextView
+    private var operation = ""
+    private var firstOperand = 0.0
+    private var secondOperand = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -34,6 +41,8 @@ class CalculatorPadActivity : Activity() {
         calculatorButtons
                 .filter { it -> !Regex("[0-9]").matches(input= it.text) }
                 .map { it.setOnClickListener{ onOperationClicked(it as Button) } }
+
+        display = findViewById(R.id.display)
 
     }
 
@@ -74,12 +83,18 @@ class CalculatorPadActivity : Activity() {
     private fun onDigitClicked(button: Button) {
 
         Log.d(loggerTag,"Digit ${button.text} clicked !")
+        if(display.text == "0.0") {
+            display.text = button.text
+        }else{
+            display.text = "${display.text}" + "${button.text}"
+        }
 
     }
 
     private fun onOperationClicked(button: Button) {
 
         Log.d(loggerTag,"Operation ${button.text} clicked !")
+        display.text = ""
 
     }
 
