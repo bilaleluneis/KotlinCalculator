@@ -15,7 +15,7 @@ package com.apps.bilaleluneis.kotlincalculator.model
  * nor can you inherit them outside the file they are in.
  *
  * the subclasses are also closed by default , so you cant inherit them
- * from the outside either.
+ * from the outside either, but you can create instances of them.
  */
 
 sealed class Operation
